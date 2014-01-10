@@ -40,6 +40,7 @@ h4 {
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-weight: 700;
 	margin-bottom: 0.5em;
+	text-transform: uppercase;
 
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
@@ -106,6 +107,20 @@ a:hover {
 
 /* Nav Bar */
 /* ############################ */
+
+.nav li a{
+	font-family: PT Sans;
+	/*font-size: 1.15em;*/
+	font-size: 1em;
+	color: #555!important;	
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.nav li a:hover{
+	color: white!important;
+	/*background-color: #026FB3!important;*/
+	background-color: #75D0F3!important;
+}
 
 .nav_text {	
 	font-family: PT Sans;
@@ -934,6 +949,9 @@ a:hover {
 	display: inline-block;
 	margin-left: 1.5em;
 	font-size: 0.9em
+}
+.submenu h5 a{
+	text-transform: uppercase;	
 }
 @media (max-width: 768px) {
 	.submenu h5 {		
