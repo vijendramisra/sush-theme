@@ -27,7 +27,7 @@ get_header();
 	</div>		
 
 	<div class="container">
-		<h3 class="title_text partner_title">ABOUT SUSHMOBILE</h3>	
+		<h3 class="title_text partner_title"><?php echo get_the_title(); ?></h3>	
 		<div class="breakline"></div>				
 	</div>		
 		
