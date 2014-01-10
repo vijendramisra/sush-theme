@@ -1,0 +1,29 @@
+/* SushMobile Web Prototype */
+/* Prototype - NOT FOR PRODUCTION */
+/* Owner David Lau */
+/* Custom Page Stylesheet */
+
+/* General */
+/* ############################ */
+
+body {
+	font-family: 'PT Sans', sans-serif;
+	background-color: #f9f9f9;
+}
+
+h3 {
+	font-family: 'PT Sans', sans-serif;
+	margin: 0;
+}
+h4 {
+	font-family: 'PT Sans', sans-serif;
+	margin: 0;
+}
+.title_text {
+	color: white;
+	text-align: center;
+	font-size: 2.7em;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-weight: 700;
+}
+
