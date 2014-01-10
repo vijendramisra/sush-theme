@@ -1,7 +1,7 @@
 <?php
 
 function register_my_menu() {
-  register_nav_menu(array(
+  register_nav_menus(array(
 	'header-menu' => 'Header Menu',
 	'about-menu' => 'About Menu',
     'work-menu' => 'Work Menu'
