@@ -11,9 +11,18 @@ get_header();
 	<div class="submenu_bg">
 		<div class="container">
 			<div class="submenu">
-				<h5><a href="leadership.php">LEADERSHIP</a></h5>
-				<h5><a href="partners.php">OUR PARTNERS</a></h5>			
-				<h5><a href="jobs.php">WORK WITH US</a></h5>			
+				<?php 
+					$menuParameters = array(
+					  'menu'			=> 'About Menu',
+					  'container'       => false,
+					  'echo'            => false,
+					  'items_wrap'      => '%3$s',
+					  'before'     => '<h5>',
+					  'after'      => '</h5>'
+					);
+
+					echo strip_tags(wp_nav_menu( $menuParameters ), '<h5><a>' );
+				?>			
 			</div>		
 		</div>
 	</div>		
