@@ -90,37 +90,22 @@
 		<div class="container">
 
 			<a href="apps.php"><h3 class="title_text">PLATFORMS WE WORK WITH</h3></a>
+
 			<div class="platform_wrapper row">
+
+				<?php
+				
+				 query_posts(array('cat' => 16, 'order' => 'ASC') );
+					while (have_posts()) : the_post();
+				?>
 			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>iOS</h3>
+			  	<?php the_post_thumbnail('full', array('class' => 'img-circle img-thumbnail')); ?>
+			  	
+			  	<h3><?php the_title(); ?></h3>
 			  	
 			  </div>
-			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>Android</h3>
-			  	
-			  </div>
-			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>Windows</h3>
-			  	
-			  </div>
-			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>BlackBerry</h3>
-			  	
-			  </div>
-			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>Responsive Web</h3>
-			  	
-			  </div>
-			  <div class="col-xs-6 col-sm-2 platform_unit">
-			  	<img src="http://placehold.it/100x100" class="img-circle img-thumbnail">
-			  	<h3>Backend & Database</h3>
-			  	
-			  </div>
+			  <?php endwhile; wp_reset_query();?>
+			  
 			</div>
 		</div>
 	</div>
@@ -171,34 +156,26 @@
 
 	<div class="blog_bg">
 		<div class="container">
-			<a href="blog.php">
+			<a href="index.php?page_id=45">
 				<h3 class="title_text">BLOGS</h3>	
 			</a>
 			
 			<div class="row blog_wrapper">
-				<div class="col-md-4 col-sm-6 blog_item">									<div class="blog_box img-thumbnail">
-						<img src="http://placehold.it/300x170" alt="">	
-						<a href="#"><h3>BLOG ARTICLE</h3></a>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, est ipsum consequuntur unde eaque quas quasi magnam architecto qui reiciendis neque quis. Hic quisquam assumenda officia repellat eveniet sed ullam.
-						</p>				
+
+				<?php
+				 query_posts(array('cat' => 13, 'tag' => 'Homeblog', 'posts_per_page' => 3) );
+					while (have_posts()) : the_post();
+				?>
+
+				<div class="col-md-4 col-sm-6 blog_item">									
+					<div class="blog_box img-thumbnail">
+						<?php if (class_exists('MultiPostThumbnails')) : MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'secondary-image'); endif; ?>	
+						<a href="<?php the_permalink() ?>" title="Permanent Link to <?php if ( function_exists('the_title_attribute')) the_title_attribute(); else the_title(); ?>"><h3><?php the_title(); ?></h3></a>
+						<?php the_excerpt() ?>				
 					</div>	
 				</div>
 
-				<div class="col-md-4 col-sm-6 blog_item">									<div class="blog_box img-thumbnail">
-						<img src="http://placehold.it/300x170" alt="">	
-						<a href="#"><h3>BLOG ARTICLE</h3></a>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, est ipsum consequuntur unde eaque quas quasi magnam architecto qui reiciendis neque quis. Hic quisquam assumenda officia repellat eveniet sed ullam.
-						</p>				
-					</div>	
-				</div>
-
-				<div class="col-md-4 col-sm-6 blog_item">									<div class="blog_box img-thumbnail">
-						<img src="http://placehold.it/300x170" alt="">	
-						<a href="#"><h3>BLOG ARTICLE</h3></a>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, est ipsum consequuntur unde eaque quas quasi magnam architecto qui reiciendis neque quis. Hic quisquam assumenda officia repellat eveniet sed ullam.
-						</p>				
-					</div>	
-				</div>
+				<?php endwhile; wp_reset_query();?>
 
 			</div>
 		</div>
@@ -209,7 +186,7 @@
 
 <div class="client_bg"> 
 	<div class="container">
-		<a href="solutions.php">
+		<a href="index.php?page_id=30">
 			<h3 class="title_text">WHO WE WORK WITH</h3>	
 		</a>		
 		<div id="carousel-client" class="carousel slide" data-ride="carousel">
@@ -217,46 +194,19 @@
 		  <!-- Wrapper for slides -->
 
 		  <div class="carousel-inner">
-		    <div class="item active">	      
+		        
+			<div class="item active">
+				<?php
+					query_posts(array('cat' => 12, 'tag' => 'Homeclient') );
+					while (have_posts()) : the_post();
+				?>
 		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
+		    		<?php the_post_thumbnail('full', array('class' => 'img-thumbnail')); ?>	
 		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>	      
-		    </div>	    
-			<div class="item">	      
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>
-		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
-		    		<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-		    	</div>	      
-		    </div>	    	    
+		    	   <?php endwhile; wp_reset_query();?>   
+		    </div>
+
+
 		  </div>
 
 	  <!-- Controls -->
@@ -279,11 +229,15 @@
 	<div class="image_crop">		
 		<!-- <img src="img/sush_image.jpg" class="full_image" alt="">	 -->
 		<div class="container">
-		<h1>
+		<h1 class="phil">
+			<?php
+				 query_posts(array('cat' => 20) );
+					while (have_posts()) : the_post();
+				?>
 			<i class="fa fa-quote-left"></i> 
-			Our philosophy is simple <br>
-			your success is our success
-			<i class="fa fa-quote-right"></i>
+			<?php the_content(); ?>
+			<i class="fa fa-quote-right fa-pad"></i>
+			 <?php endwhile; wp_reset_query();?>
 		</h1>	
 		</div>
 		
@@ -295,25 +249,22 @@
 
 	<div class="partners_bg">
 		<div class="container">			
-			<a href="partners.php">
+			<a href="index.php?page_id=9">
 				<h3 class="title_text">OUR PARTNERS</h3>			
 			</a>
 				<div class="row partners_wrapper">
+					<?php
+				 query_posts(array('cat' => 7, 'tag' => 'HomePartner') );
+					while (have_posts()) : the_post();
+				?>
 					<div class="col-sm-4 col-xs-12 partners_unit">
-						<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-						<h3>GEN-I</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, necessitatibus, quae modi consequuntur  </p>
+						<?php if (class_exists('MultiPostThumbnails')) :  MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'secondary-image', NULL,  'post-secondary-image-thumbnail img-thumbnail'); endif; ?>
+						
+						<h3 class="cap"><?php the_title(); ?></h3>
+						<?php the_excerpt(); ?>
 					</div>
-					<div class="col-sm-4 col-xs-12 partners_unit">
-						<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-						<h3>KONY</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, necessitatibus, quae modi consequuntur   </p>
-					</div>
-					<div class="col-sm-4 col-xs-12 partners_unit">
-						<img class="img-thumbnail" src="http://placehold.it/120x120" alt="">
-						<h3>SAP</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, necessitatibus, quae modi consequuntur  </p>
-					</div>
+					<?php endwhile; wp_reset_query(); ?>
+					
 				</div>			
 		</div>		
 	</div>
@@ -334,24 +285,17 @@
 		<div class="container">			
 			<h3 class="title_text">FEATURED ON</h3>
 			<div class="row featured_wrapper">
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>			  	
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>		
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>			  	
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>						
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>			  	
-				<div class="featured_box col-sm-2 col-xs-6">
-					<img src="http://placehold.it/120x120" >	
-				</div>		
+				<?php
+				 query_posts(array('cat' => 17) );
+					while (have_posts()) : the_post();
+				?>
+
+					<div class="featured_box col-sm-2 col-xs-6">
+						<?php the_post_thumbnail('full'); ?>	
+					</div>
+
+				<?php endwhile; wp_reset_query();?>
+						
 			  		  	
 			 </div>
 		</div>

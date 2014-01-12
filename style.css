@@ -1023,6 +1023,10 @@ a:hover {
 	font-weight: 700;
 }
 
+.staff_item h6 p{
+	text-transform: uppercase;
+}
+
 /* Blog_List_page */ 
 /* ############################ */
 
@@ -1137,3 +1141,19 @@ a:hover {
 /* Solutions */ 
 /* ############################ */
 
+.cap{
+	text-transform: uppercase;
+}
+
+.btn-color a{
+	color: #fff !important;
+}
+
+h1.phil p{
+	margin: 0;
+	display: inline;
+}
+
+.fa-pad{
+	padding: 0 0 0 10px;
+}

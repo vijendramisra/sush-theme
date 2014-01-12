@@ -5,87 +5,51 @@ Template Name: Blog Template
 get_header();
 ?>
 
-	<div class="nav_buffer"></div>	
+<div class="nav_buffer"></div>	
 
-	<div class="blog_list_bg">
+<div class="blog_list_bg">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-9">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9">
 				
-					<!-- BLOG SINGLE ITEM -->
-					<div class="blog_list_item">
-	<div class="row">
-		<a class="col-sm-10" href="blog_single.php"><h2>Lorem Lorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</h2></a>	
-		<div class="col-sm-2 date_blog"><h2>03 DEC 2013</h2></div>
-	</div>
-	
-	<div class="thickline"></div>
-	<div class="row">
-		<div class="col-sm-12 col-md-6 blog-img-wrapper">
-			<img src="http://placehold.it/350x225" alt="">	
-		</div>		
-		
-		<div class="col-sm-12 col-md-6">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, voluptate, tempore molestiae veniam deleniti voluptatem ducimus est reiciendis ad sed iusto aliquam! Minima, aliquid doloribus nulla dolore modi nobis omnis! <br><br>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, commodi, animi, accusantium ad reprehenderit quia nam ipsam id accusamus magnam pariatur aliquam unde cumque omnis ipsa! Aliquam voluptate explicabo quia. 
-			</p>						
-			<a href="#">Read More</a>		
-		</div>
-	</div>	
-	<div class="thickline"></div>
-	<!-- <div class="breakline"></div> -->
-</div>		
+				<?php
+					global $more;    // Declare global $more (before the loop).
+				 query_posts(array('cat' => 13) );
+					while (have_posts()) : the_post();
+				?>
 
 					<!-- BLOG SINGLE ITEM -->
 					<div class="blog_list_item">
-	<div class="row">
-		<a class="col-sm-10" href="blog_single.php"><h2>Lorem Lorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</h2></a>	
-		<div class="col-sm-2 date_blog"><h2>03 DEC 2013</h2></div>
-	</div>
-	
-	<div class="thickline"></div>
-	<div class="row">
-		<div class="col-sm-12 col-md-6 blog-img-wrapper">
-			<img src="http://placehold.it/350x225" alt="">	
-		</div>		
+						<div class="row">
+							<a class="col-sm-10" href="<?php the_permalink() ?>" title="Permanent Link to <?php if ( function_exists('the_title_attribute')) the_title_attribute(); else the_title(); ?>"><h2><?php the_title(); ?></h2></a>	
+							<div class="col-sm-2 date_blog"><h2 class="cap"><?php 
+								$d = "d M Y";
+							echo get_the_date($d); ?></h2></div>
+						</div>
 		
-		<div class="col-sm-12 col-md-6">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, voluptate, tempore molestiae veniam deleniti voluptatem ducimus est reiciendis ad sed iusto aliquam! Minima, aliquid doloribus nulla dolore modi nobis omnis! <br><br>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, commodi, animi, accusantium ad reprehenderit quia nam ipsam id accusamus magnam pariatur aliquam unde cumque omnis ipsa! Aliquam voluptate explicabo quia. 
-			</p>						
-			<a href="#">Read More</a>		
-		</div>
-	</div>	
-	<div class="thickline"></div>
-	<!-- <div class="breakline"></div> -->
-</div>		
+						<div class="thickline"></div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6 blog-img-wrapper">
+								<?php the_post_thumbnail('full'); ?>	
+							</div>		
+							
+							<div class="col-sm-12 col-md-6">
+								<?php 
+									
+									$more = 0;       // Set (inside the loop) to display content above the more tag.
+									the_content("Read More");
+								?>	
+							</div>
+						</div>	
+						<div class="thickline"></div>
+						<!-- <div class="breakline"></div> -->
+					</div>
 
-					<!-- BLOG SINGLE ITEM -->
-					<div class="blog_list_item">
-	<div class="row">
-		<a class="col-sm-10" href="blog_single.php"><h2>Lorem Lorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</h2></a>	
-		<div class="col-sm-2 date_blog"><h2>03 DEC 2013</h2></div>
-	</div>
-	
-	<div class="thickline"></div>
-	<div class="row">
-		<div class="col-sm-12 col-md-6 blog-img-wrapper">
-			<img src="http://placehold.it/350x225" alt="">	
-		</div>		
-		
-		<div class="col-sm-12 col-md-6">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, voluptate, tempore molestiae veniam deleniti voluptatem ducimus est reiciendis ad sed iusto aliquam! Minima, aliquid doloribus nulla dolore modi nobis omnis! <br><br>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, commodi, animi, accusantium ad reprehenderit quia nam ipsam id accusamus magnam pariatur aliquam unde cumque omnis ipsa! Aliquam voluptate explicabo quia. 
-			</p>						
-			<a href="#">Read More</a>		
-		</div>
-	</div>	
-	<div class="thickline"></div>
-	<!-- <div class="breakline"></div> -->
-</div>		
+			 	<?php endwhile; wp_reset_query();?>
 
-					<div class="pagination_wrapper">
+
+					<!-- <div class="pagination_wrapper">
 						<ul class="pagination">
 						  <li class="disabled"><a href="#">&laquo;</a></li>
 						  <li class="active"><a href="#">1</a></li>
@@ -97,28 +61,15 @@ get_header();
 						  <li><a href="#">7</a></li>					  
 						  <li><a href="#">&raquo;</a></li>
 						</ul>					
-					</div>
+					</div> -->
 					
-				</div>
+			</div>
 
 				<!-- Fixed Side Nav for Blog Links -->
 				<!-- ######################################################## -->
 
 				<!-- BLOG SIDE NAV -->				
-					<div class="side_blog_list hidden-xs col-sm-3">
-		<h2>PAST POSTING</h2>
-		<div class="thickline"></div>
-		<a href="">Lorem rLorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</a>
-		<p>- 03 DEC 2013</p>
-
-		<div class="thickline"></div>
-		<a href="">Lorem rLorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</a>
-		<p>- 03 DEC 2013</p>
-
-		<div class="thickline"></div>
-		<a href="">Lorem rLorem ipsum dolor sit amet. ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolores.</a>
-		<p>- 03 DEC 2013</p>
-	</div>						
+					<?php get_sidebar(); ?>						
 
 			</div>
 		</div>

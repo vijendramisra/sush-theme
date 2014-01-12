@@ -9,9 +9,18 @@ get_header();
 	<div class="submenu_bg">
 		<div class="container">
 			<div class="submenu solutions_subnav">
-				<h5><a href="strategy.php">OUR STRATEGY</a></h5>
-				<h5><a href="design.php">DESIGN</a></h5>			
-				<h5><a href="development.php">DEVELOPMENT</a></h5>			
+				<?php 
+					$menuParameters = array(
+					  'menu'			=> 'Work Menu',
+					  'container'       => false,
+					  'echo'            => false,
+					  'items_wrap'      => '%3$s',
+					  'before'     => '<h5>',
+					  'after'      => '</h5>'
+					);
+
+					echo strip_tags(wp_nav_menu( $menuParameters ), '<h5><a>' );
+				?>			
 			</div>		
 		</div>
 	</div>		
@@ -21,69 +30,55 @@ get_header();
 	
 	<!-- SINGLE BANNER -->
 	<div class="single_banner_bg">
-		<img class="hidden-xs single_banner img-responsive" src="http://placehold.it/1250x300" alt="single banner">		
+		<?php the_post_thumbnail('full', array('class' => 'hidden-xs single_banner img-responsive')); ?>	
 	</div>		
 
 	<div class="container">
-		<h3 class="title_text partner_title">HOW WE WORK AT SUSHMOBILE</h3>	
+		<h3 class="title_text partner_title"><?php echo get_the_title(); ?></h3>	
 		<div class="breakline"></div>				
 	</div>		
 		
-	<!-- LEFT MODULE UNIT -->
+	<?php 
+			$i=0;
+			query_posts(array('cat' => 8) );
+			while (have_posts()) : the_post();
+			if (($i % 2) == 0){
+		?>
 		<!-- LEFT MODULE UNIT -->
-
+		<!-- LEFT MODULE UNIT -->
 	<div class="apps_left_bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
+					<?php the_post_thumbnail('full', array('class' => 'img-responsive')); ?>	
 				</div>				
 				<div class="col-sm-6">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
+					<h3><?php the_title(); ?></h3>
+					<?php the_content(); ?>
 				</div>
 			</div>
 		</div>		
-	</div>				
-
+	</div>
+	<?php }
+		else{
+	?>
 	<!-- RIGHT MODULE UNIT -->
-		<!-- RIGHT MODULE UNIT -->
+	<!-- RIGHT MODULE UNIT -->
 
 	<div class="apps_right_bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
+					<h3><?php the_title(); ?></h3>
+					<?php the_content(); ?>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
+					<?php the_post_thumbnail('full', array('class' => 'img-responsive')); ?>	
 				</div>								
 			</div>
 		</div>		
 	</div>				
-
-	<!-- LEFT MODULE UNIT -->
-		<!-- LEFT MODULE UNIT -->
-
-	<div class="apps_left_bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
-				</div>				
-				<div class="col-sm-6">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
-				</div>
-			</div>
-		</div>		
-	</div>				
+	<?php } ?>
+		<?php $i++; endwhile; wp_reset_query();?>			
 
 	<?php get_footer(); ?>

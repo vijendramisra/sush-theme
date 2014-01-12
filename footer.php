@@ -50,21 +50,12 @@
 
 
 				</div>
-				<div class="col-sm-6 form_wrapper">				
-					<form role="form">						
+				<div class="col-sm-6 form_wrapper">	
+						
+											
 						<h3><span class="icon_send glyphicon glyphicon-send"></span> &nbsp EMAIL US</h3>	
-					  <div class="form-group">				  
-					    <input type="text" class="form-control custom_input" id="" placeholder="Your Name">
-					  </div>
-					  <div class="form-group">				  
-					    <input type="email" class="form-control custom_input" id="" placeholder="Your Email">
-					  </div>				  
-					  <div class="form-group">				  
-					    <input type="text" class="form-control custom_input" id="" placeholder="Your Subject">
-					  </div>
-					<textarea class="form-control custom_input" rows="10" placeholder="Your Enquiry"></textarea>
-					  <button type="submit" class="btn btn-block btn-primary btn-lg pull-right btn-submit">SUBMIT ENQUIRY</button>
-					</form>
+					   <?php echo do_shortcode( '[contact-form-7 id="156" title="Contact form 1"]' ); ?>	
+					
 					
 				</div>
 			</div>

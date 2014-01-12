@@ -32,7 +32,7 @@ get_header();
 	
 	<!-- SINGLE BANNER -->
 	<div class="single_banner_bg">
-		<img class="hidden-xs single_banner img-responsive" src="http://placehold.it/1250x300" alt="single banner">		
+		<?php the_post_thumbnail('full', array('class' => 'hidden-xs single_banner img-responsive')); ?>	
 	</div>		
 
 	<div class="container">
@@ -40,61 +40,53 @@ get_header();
 		<div class="breakline"></div>				
 	</div>		
 		
-	<!-- LEFT MODULE UNIT -->
-		<!-- LEFT MODULE UNIT -->
+	
 
+		<?php 
+			$i=0;
+			query_posts(array('cat' => 5) );
+			while (have_posts()) : the_post();
+			if (($i % 2) == 0){
+		?>
+		<!-- LEFT MODULE UNIT -->
+		<!-- LEFT MODULE UNIT -->
 	<div class="apps_left_bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
+					<?php the_post_thumbnail('full', array('class' => 'img-responsive')); ?>	
 				</div>				
 				<div class="col-sm-6">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
+					<h3><?php the_title(); ?></h3>
+					<?php the_content(); ?>
 				</div>
 			</div>
 		</div>		
-	</div>				
-
+	</div>
+	<?php }
+		else{
+	?>
 	<!-- RIGHT MODULE UNIT -->
-		<!-- RIGHT MODULE UNIT -->
+	<!-- RIGHT MODULE UNIT -->
 
 	<div class="apps_right_bg">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
+					<h3><?php the_title(); ?></h3>
+					<?php the_content(); ?>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
+					<?php the_post_thumbnail('full', array('class' => 'img-responsive')); ?>	
 				</div>								
 			</div>
 		</div>		
 	</div>				
+	<?php } ?>
+		<?php $i++; endwhile; wp_reset_query();?>
 
-	<!-- LEFT MODULE UNIT -->
-		<!-- LEFT MODULE UNIT -->
+					
 
-	<div class="apps_left_bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<img src="http://placehold.it/550x300" class="img-responsive" alt="Responsive image">
-				</div>				
-				<div class="col-sm-6">
-					<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, blanditiis.</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, atque, eveniet, quasi cupiditate provident illum nam blanditiis sit dolor fuga repellat dolorem quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br><br>
-					quaerat beatae vero aut recusandae porro reprehenderit excepturi maiores optio hic quas veniam architecto laudantium labore laborum dolores.<br>
-					</p>
-				</div>
-			</div>
-		</div>		
-	</div>				
+				
 
 	<?php get_footer(); ?>
