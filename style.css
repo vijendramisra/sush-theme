@@ -648,6 +648,7 @@ a:hover {
 }
 .apps_page_bg .row {
 	margin-top: 2em;
+	padding-left: 0;
 }
 .apps_page_item {
 	background-color: #e1e1e1;
@@ -783,7 +784,7 @@ a:hover {
 .apps_screen_item .modal-content {
 	border-radius: 0;
 	background: none;
-	border-bottom: none;
+	border: none;
 
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -1042,7 +1043,7 @@ a:hover {
 	width: 100%;
 }
 .blog_list_item a {
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
 	display: block;
 }
 .blog_list_item p {
@@ -1073,6 +1074,16 @@ a:hover {
 @media (max-width: 768px) {
 	.date_blog h2 {
 		text-align: left!important;		
+	}
+	
+
+}
+@media (max-width: 992px) { 
+	.blog_list_item img { 
+		margin-bottom: 0;
+	}
+	.blog_list_item p {
+		margin-top: 1em;
 	}
 }
 
