@@ -198,13 +198,24 @@
 			<div class="item active">
 				<?php
 					query_posts(array('cat' => 12, 'tag' => 'Homeclient') );
+					global $wp_query; 
+         			$totalrec = $wp_query->found_posts;
+         			$counterInt = 1;
 					while (have_posts()) : the_post();
 				?>
 		    	<div class="col-xs-6 col-sm-4 col-md-2 client_box">
 		    		<?php the_post_thumbnail('full', array('class' => 'img-thumbnail')); ?>	
 		    	</div>
-		    	   <?php endwhile; wp_reset_query();?>   
-		    </div>
+		    	   <?php 
+		if($counterInt % 6 == 0){
+			echo '</div>
+				<div class="item">';	
+		}else if($counterInt >= $totalrec){
+			echo '</div>';	
+		}
+        $counterInt++;
+	endwhile; wp_reset_query();?>   
+		    
 
 
 		  </div>
