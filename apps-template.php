@@ -27,97 +27,29 @@ get_header();
 			<!-- ROW 1 -->
 
 			<ul class="row">
+				<?php
+				 query_posts(array('cat' => 21) );
+					while (have_posts()) : the_post();
+				?>
 				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="apps_single.php">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>								
 
-			<!-- ROW 2  -->
+					<a href="<?php the_permalink() ?>" title="Permanent Link to <?php if ( function_exists('the_title_attribute')) the_title_attribute(); else the_title(); ?>">
 
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="apps_single.php">
 					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
+						<?php if (class_exists('MultiPostThumbnails')) :  MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'secondary-image', NULL,  'post-secondary-image-thumbnail img-responsive'); endif; ?>	
+						
 						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
+        					<h3 class="cap"><?php the_title(); ?></h3>
+        					<?php if ( get_post_meta($post->ID, 'AppCompany', true) ) : ?>
+								<h4><?php echo get_post_meta($post->ID, 'AppCompany', true) ?></h4>
+							<?php endif; ?>
         				</div>
 					</div>
+
 					</a>
+
 				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-6">
-					<a href="#">
-					<div class="apps_page_item thumbnail">
-						<img class="img-responsive" src="http://placehold.it/300x300">
-						      <div class="caption">
-        					<h3>HOME HUNTER</h3>
-        					<h4>Kiwibank</h4>
-        				</div>
-					</div>
-					</a>
-				</li>								
+				<?php endwhile; wp_reset_query();?>
 			</ul>
 
 				

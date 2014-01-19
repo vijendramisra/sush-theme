@@ -10,8 +10,16 @@ get_header();
 
 	<!-- SINGLE BANNER -->
 	<!-- <div class="nav_buffer"></div>	 -->
+
+<?php if (have_posts()) : ?>
+					<?php while (have_posts()) : the_post(); ?>
+
+
+
+
+
 	<div class="single_banner_bg">
-		<img class="hidden-xs single_banner img-responsive" src="http://placehold.it/1250x300" alt="single banner">		
+		<?php if (class_exists('MultiPostThumbnails')) :  MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'third-image', NULL,  'post-secondary-image-thumbnail hidden-xs single_banner img-responsive'); endif; ?>
 	</div>		
 
 	<!-- APPS_DETAILS UNIT -->
@@ -22,18 +30,28 @@ get_header();
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-8 apps_title_wrapper">
-					<img class="apps_detail_icon img-thumbnail img-rounded" src="http://placehold.it/120x120" alt="logo">
-					<h1>HOME HUNTER</h1>				
-					<h2>KIWIBANK</h2>				
+					<?php the_post_thumbnail('full', array('class' => 'apps_detail_icon img-thumbnail img-rounded')); ?>
+					
+					<h1 class="cap"><?php the_title(); ?></h1>
+					<?php if ( get_post_meta($post->ID, 'AppCompany', true) ) : ?>
+						<h2 class="cap"><?php echo get_post_meta($post->ID, 'AppCompany', true) ?></h2>
+					<?php endif; ?>								
 				
 					<div class="apps_description">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, unde, quisquam, doloremque, consectetur neque corporis temporibus dolor cum a doloribus cupiditate quibusdam molestias obcaecati totam optio eligendi explicabo autem. Aliquid.</p>
+						<?php the_excerpt(); ?>
 					</div>
 				</div>
 				<div class="col-sm-4 col-xs-12">
 					<div class="app_detail_specs">
-						<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, unde</h4>
-						<h3>Lorem ipsum dolor sit amet</h3>
+
+						<?php if ( get_post_meta($post->ID, 'AppSpecOne', true) ) : ?>
+							<h4><?php echo get_post_meta($post->ID, 'AppSpecOne', true) ?></h4>
+						<?php endif; ?>
+
+						<?php if ( get_post_meta($post->ID, 'AppSpecTwo', true) ) : ?>
+							<h3><?php echo get_post_meta($post->ID, 'AppSpecTwo', true) ?></h3>
+						<?php endif; ?>
+						
 						<a href="#">
 							<img class="app_link ios_link" src="http://placehold.it/110x40">
 						</a>
@@ -49,36 +67,49 @@ get_header();
 	
 	<!-- APPS_GALLERY UNIT -->
 	<div class="app_gallery_bg">	
-	<div class="container">	
-		<!-- <div id="links"> -->
-		<div class="gallery_box">
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/240x320">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>
-		    <a class="app_screenshots img-responsive" href="http://placehold.it/320x480" data-gallery>
-		        <img src="http://placehold.it/160x240">
-		    </a>		    		    		    		    		    
+		<div class="container">	
+			<!-- <div id="links"> -->
+			<div class="gallery_box">
+
+				<?php  $args = array(
+   'post_type' => 'attachment',
+   'numberposts' => -1,
+   'post_status' => null,
+   'post_parent' => $post->ID
+  );
+
+  $attachments = get_posts( $args );
+  $pik = 0;
+
+     if ( $attachments ) {
+
+     	$attlen = sizeof($attachments);
+     	
+        foreach ( $attachments as $attachment ) {
+
+        	if($pik < ($attlen-1)){
+
+           		$pp =  wp_get_attachment_image_src($attachment->ID, 'full');
+           ?>
+			<a class="app_screenshots img-responsive" href="<?php echo $pp[0]; ?>" data-gallery>
+			        <img src="<?php echo $pp[0]; ?>">
+			</a>
+           <?php
+           		
+           		$pik++;
+        	}
+
+         }
+
+     }
+
+     ?>
+
+			    
+			    	    		    		    		    		    
+			</div>	
 		</div>	
-	</div>	
-</div>
+	</div>
 
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 	<div id="blueimp-gallery" class="blueimp-gallery apps_screen_wrapper">
@@ -128,23 +159,12 @@ get_header();
 			<div class="row">
 				<div class="col-md-12">
 					<h2>APP FEATURES</h2>		
-					<ul>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, placeat!</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-						<li>ipsum dolor sit amet, consectetur adipisicing elit.</li>
-						<li>psum dolor sit amet, consectetur adipisicing</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste non dolorum facere!</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, placeat!</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-						<li>ipsum dolor sit amet, consectetur adipisicing elit.</li>
-						<li>psum dolor sit amet, consectetur adipisicing</li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste non dolorum facere!</li>
-					</ul>
+					<?php the_content(); ?>
 				</div>
 			</div>			
 		</div>		
 	</div> 			
-
+<?php endwhile; endif; ?>
 	<!-- LEFT MODULE UNIT -->
 		<!-- LEFT MODULE UNIT -->
 
@@ -183,113 +203,4 @@ get_header();
 		</div>		
 	</div>				
 
-	<!-- FOOTER UNIT -->
-	<!-- ####################### -->
-			
-		<!-- CONTACT UNIT -->
-	<!-- ####################### -->		
-
-	<a name="footer"></a>
-
-	<div class="contact_bg"> 
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 address_wrapper">
-					
-					<h3><span class="icon_send glyphicon glyphicon-earphone"></span> &nbsp 0800-123-APPS</h3>
-					
-
-
-
-					<div class="location_box">
-						<address class="location_text col-md-6">
-						  <strong>AUCKLAND OFFICE</strong><br>
-						  3A 47 High Street<br>
-						  Auckland<br>
-						  New Zealand<br>
-						  <abbr title="Phone">Phone:</abbr> 09 281 5603
-						</address>									
-						<div class="map_box col-md-6 ">
-							<iframe width="280" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=sushmobile&amp;aq=&amp;sll=-36.848125,174.766276&amp;sspn=0.013788,0.027874&amp;ie=UTF8&amp;hq=sushmobile&amp;hnear=&amp;t=m&amp;ll=-36.848125,174.766276&amp;spn=0.013788,0.027874&amp;output=embed"></iframe>
-						</div>
-					</div>	
-
-					<div class="location_box">
-						<address class="location_text col-md-6">
-						  <strong>WELLINGTON OFFICE</strong><br>
-						  Lv 16, 157 Lambton Quay<br>
-						  Wellington<br>
-						  New Zealand<br>					  
-						  <abbr title="Phone">Phone:</abbr> 021 321-936
-						</address>					
-						<div class="map_box col-md-6 ">
-							<iframe width="280" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.nz/maps?t=m&amp;q=157+Lambton+Quay,+Wellington&amp;ie=UTF8&amp;hq=&amp;hnear=157+Lambton+Quay,+Wellington,+6011&amp;ll=-41.282386,174.776516&amp;spn=0.01935,0.025749&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>					
-						</div>
-					</div>	
-
-
-				</div>
-				<div class="col-sm-6 form_wrapper">				
-					<form role="form">						
-						<h3><span class="icon_send glyphicon glyphicon-send"></span> &nbsp EMAIL US</h3>	
-					  <div class="form-group">				  
-					    <input type="text" class="form-control custom_input" id="" placeholder="Your Name">
-					  </div>
-					  <div class="form-group">				  
-					    <input type="email" class="form-control custom_input" id="" placeholder="Your Email">
-					  </div>				  
-					  <div class="form-group">				  
-					    <input type="text" class="form-control custom_input" id="" placeholder="Your Subject">
-					  </div>
-					<textarea class="form-control custom_input" rows="10" placeholder="Your Enquiry"></textarea>
-					  <button type="submit" class="btn btn-block btn-primary btn-lg pull-right btn-submit">SUBMIT ENQUIRY</button>
-					</form>
-					
-				</div>
-			</div>
-
-			<div class="breakline"></div>		
-			<div class="custom_footer">
-					<a href="" class="col-sm-3 col-xs-12">
-						<span class="social_icon"><i class="fa fa-facebook-square fa-lg"></i> Sush Mobile on Facebook</span>
-					</a>
-					<a href="" class="col-sm-3 col-xs-12">
-						<span class="social_icon"><i class="fa fa-twitter-square fa-lg"></i> Sush Mobile on Twitter</span>		
-					</a>
-					<a href="" class="col-sm-3 col-xs-12">
-						<span class="social_icon"><i class="fa fa-linkedin-square fa-lg"></i> Sush Mobile on Linkedin</span>		
-					</a>
-					<a href="" class="col-sm-3 col-xs-12">
-						<span class="social_icon"><i class="fa fa-youtube fa-lg"></i> Sush Mobile on Youtube</span>		
-					</a>
-				<div class="footer_text">
-					<span>All Rights Reserved - Sush Mobile 2013 </span>
-					<!-- <span>Made In New Zealand</span>				 -->
-				</div>
-				
-			</div>		
-		</div>
-
-	</div>
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/jquery.js"></script>
-    
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/bootstrap.js"></script>	
-
-	<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/bookmarkscroll.js"></script>
-
-
-
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/hammer.min.js"></script>
-	
-	<!-- Custom Javascript -->
-
-    <script src="<?php bloginfo( 'template_url' ); ?>/js/application.js"></script>
-    <!-- JAVASCRIPT REQUIRED FOR LIGHTBOX GALLERY -->
-    <script src="<?php bloginfo( 'template_url' ); ?>/js/jquery.blueimp-gallery.min.js"></script>	
-	<script src="<?php bloginfo( 'template_url' ); ?>/js/bootstrap-image-gallery.min.js"></script>
-	 <?php wp_footer(); ?>
-</body>
-</html>
+	<?php get_footer(); ?>

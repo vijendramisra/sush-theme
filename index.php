@@ -89,7 +89,7 @@
 	<div class="platform_bg">
 		<div class="container">
 
-			<a href="apps.php"><h3 class="title_text">PLATFORMS WE WORK WITH</h3></a>
+			<a href="index.php?page_id=47"><h3 class="title_text">PLATFORMS WE WORK WITH</h3></a>
 
 			<div class="platform_wrapper row">
 
@@ -116,37 +116,30 @@
 
 	<div class="apps_bg">
 		<div class="container">
-			<a href="apps.php"><h3 class="title_text">OUR APPS</h3></a>
+			<a href="index.php?page_id=47"><h3 class="title_text">OUR APPS</h3></a>
 			
 				<div class="row apps_wrapper">
+					
+					<?php
+				 query_posts(array('cat' => 21, 'tag' => 'homeApp', 'posts_per_page' => 4) );
+					while (have_posts()) : the_post();
+				?>
+
+
 					<div class="col-sm-3 col-xs-6 apps_item">
 						<div>
-							<img class="img-thumbnail" src="http://placehold.it/300x300" alt="">							
+
+							<?php if (class_exists('MultiPostThumbnails')) :  MultiPostThumbnails::the_post_thumbnail(get_post_type(), 'secondary-image', NULL,  'post-secondary-image-thumbnail img-thumbnail'); endif; ?>							
 						</div>						
-						<h3>Unitec Mobile App</h3>
-						<h4>UNITEC</h4>
+						<h3><?php the_title(); ?></h3>
+						<?php if ( get_post_meta($post->ID, 'AppCompany', true) ) : ?>
+							<h4 class="cap"><?php echo get_post_meta($post->ID, 'AppCompany', true) ?></h4>
+						<?php endif; ?>
+						
 					</div>
-					<div class="col-sm-3 col-xs-6 apps_item">
-						<div>
-							<img class="img-thumbnail" src="http://placehold.it/300x300" alt="">							
-						</div>						
-						<h3>Unitec Mobile App</h3>
-						<h4>UNITEC</h4>
-					</div>
-					<div class="col-sm-3 col-xs-6 apps_item">
-						<div>
-							<img class="img-thumbnail" src="http://placehold.it/300x300" alt="">							
-						</div>						
-						<h3>Unitec Mobile App</h3>
-						<h4>UNITEC</h4>
-					</div>
-					<div class="col-sm-3 col-xs-6 apps_item">
-						<div>
-							<img class="img-thumbnail" src="http://placehold.it/300x300" alt="">							
-						</div>						
-						<h3>Unitec Mobile App</h3>
-						<h4>UNITEC</h4>
-					</div>
+
+					<?php endwhile; wp_reset_query();?>
+
 				</div>
 		</div>
 	</div>

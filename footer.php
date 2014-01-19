@@ -86,7 +86,7 @@
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/jquery.js"></script>
+    
     
     <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/bootstrap.js"></script>	
 
@@ -98,7 +98,16 @@
 	
 	<!-- Custom Javascript -->
 
-    <script src="<?php bloginfo( 'template_url' ); ?>/js/application.js"></script>	
+    <script src="<?php bloginfo( 'template_url' ); ?>/js/application.js"></script>
+
+    <?php if(in_category( '21' )){?>
+
+    <link rel="stylesheet" href="<?php bloginfo( 'template_url' ); ?>/css/blueimp-gallery.css">	
+
+    <script src="<?php bloginfo( 'template_url' ); ?>/js/jquery.blueimp-gallery.min.js"></script>	
+	<script src="<?php bloginfo( 'template_url' ); ?>/js/bootstrap-image-gallery.min.js"></script>	
+
+	<?php } ?>
 	 <?php wp_footer(); ?>
 </body>
 </html>

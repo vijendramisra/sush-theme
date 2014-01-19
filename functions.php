@@ -7,6 +7,14 @@ if (class_exists('MultiPostThumbnails')) {
                 'post_type' => 'post'
             )
         );
+        new MultiPostThumbnails(
+            
+            array(
+                'label' => 'Third Image',
+                'id' => 'third-image',
+                'post_type' => 'post'
+            )
+        );
 }
 
 function register_my_menu() {
